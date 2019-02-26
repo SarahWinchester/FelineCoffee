@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.List;
 
 public class Waitress {
 
@@ -6,11 +7,11 @@ public class Waitress {
 
         Icon icon2 = new ImageIcon(Order.class.getResource("img/felineCafe.png"));
 
-        String milkAux;
+        Boolean milkAux;
         String nameAux;
-        String sizeAux;
+        Sizes sizeAux;
         int orderFinish = 0;
-        String [] sizeOptions ={"chico", "mediano", "grande"};
+        Sizes [] sizeOptions =Sizes.values();
         String [] coffeOptions ={"Veracruz", "Oaxaca" ,"Colombia"};
         String [] teOptions ={"Green Te", "Black Te" ,"Tisane"};
         String [] frapOptions ={"Regular", "Moka" ,"White"};
@@ -20,177 +21,98 @@ public class Waitress {
         JOptionPane.showMessageDialog(null, "Welcoмe тo [ fєℓιиє ςαfє ]\n","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 );
 
 
-        for (int i =0 ; orderFinish == 0 ; i++){
-            nameAux = (String)JOptionPane.showInputDialog(null, "Que deseas Tomar?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,null,null);
+        do {
+
+            nameAux = (String) JOptionPane.showInputDialog(null, "What do you want to drink?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, null, null);
 
             System.out.println(nameAux);
-            switch (nameAux.toLowerCase()){
+            switch (nameAux.toLowerCase()) {
 
                 case "coffee":
 
-                    String coffeeQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de cafe deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,coffeOptions,null);
+                    String coffeeQuestion = (String) JOptionPane.showInputDialog(null, "What kind of coffee do you want?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, coffeOptions, null);
 
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
+                    sizeAux = (Sizes) JOptionPane.showInputDialog(null, "What size?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, sizeOptions, null);
 
-                    int milk = JOptionPane.showConfirmDialog(null,"Quieres Leche?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
+                    int milk = JOptionPane.showConfirmDialog(null, "Do you want milk?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
 
-                    if (milk == 0){
-                        milkAux = "Con Leche";
-                    }else if(milk == 1){
-                        milkAux ="Sin leche";
-                    }else{
+                    if (milk == 0) {
+                        milkAux = true;
+                    } else if (milk == 1) {
+                        milkAux = false;
+                    } else {
                         break;
                     }
 
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
                     System.out.println(coffeeQuestion);
-                    System.out.println(milk);
                     System.out.println(sizeAux);
                     System.out.println(milkAux);
+                    System.out.println("********");
+
+                    Cafe coff = new Cafe("coffee", milkAux,sizeAux, sizeAux.getPrice() ,coffeeQuestion);
+                   // System.out.println(coff.sizes.getPrice());
+                    Order order = new Order();
+
+
+                    orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
+
+                    break;
 
                 case "te":
 
 
-                    String teQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de te deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,teOptions,null);
+                    String teQuestion = (String) JOptionPane.showInputDialog(null, "What kind of te do you want? ", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, teOptions, null);
 
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
+                    sizeAux = (Sizes) JOptionPane.showInputDialog(null, "What Size?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, sizeOptions, null);
 
-                    int teMilk = JOptionPane.showConfirmDialog(null,"Quieres Leche?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
+                    int teMilk = JOptionPane.showConfirmDialog(null, "So you want milk?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
 
-                    if (teMilk == 0){
-                        milkAux = "Con Leche";
-                    }else if(teMilk == 1){
-                        milkAux ="Sin leche";
-                    }else{
+                    if (teMilk == 0) {
+                        milkAux = true;
+                    } else if (teMilk == 1) {
+                        milkAux = false;
+                    } else {
                         break;
                     }
-
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
                     System.out.println(teQuestion);
-                    System.out.println(teMilk);
                     System.out.println(sizeAux);
                     System.out.println(milkAux);
+                    System.out.println("******");
+
+                    orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
+
+                    break;
 
                 case "frappucino":
 
-                    String frapQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de te deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,frapOptions,null);
+                    String frapQuestion = (String) JOptionPane.showInputDialog(null, "What kind of Frappuccino do you want?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, frapOptions, null);
 
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
+                    sizeAux = (Sizes) JOptionPane.showInputDialog(null, "What Size?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, sizeOptions, null);
 
-                    int whipped = JOptionPane.showConfirmDialog(null,"Quieres Crema Batida?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
+                    int whipped = JOptionPane.showConfirmDialog(null, "Do you want Wipped cream?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
 
-                    if (whipped == 0){
-                        milkAux = "Con Leche";
-                    }else if(whipped == 1){
-                        milkAux ="Sin leche";
-                    }else{
+                    if (whipped == 0) {
+                        milkAux = true;
+                    } else if (whipped == 1) {
+                        milkAux = false;
+                    } else {
                         break;
                     }
 
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
                     System.out.println(frapQuestion);
-                    System.out.println(whipped);
                     System.out.println(sizeAux);
                     System.out.println(milkAux);
+                    System.out.println("*******");
+
+                    orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
+                    break;
 
                 default:
-                    JOptionPane.showMessageDialog(null, "Lo sentimos, no tenemos lo que estas buscando\n","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 );
-
-
+                    JOptionPane.showMessageDialog(null, "We sorry, we don't have what you are looking for, can i offer you something else?\n", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2);
             }
+            }
+            while (orderFinish == 0) ;
+
 
         }
-
-
-       /* while(orderFinish == 0) {
-
-            nameAux = (String)JOptionPane.showInputDialog(null, "Que deseas Tomar?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,null,null);
-
-            System.out.println(nameAux);
-
-            switch (nameAux.toLowerCase()){
-
-                case "coffee":
-
-                    String coffeeQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de cafe deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,coffeOptions,null);
-
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
-
-                    int milk = JOptionPane.showConfirmDialog(null,"Quieres Leche?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    if (milk == 0){
-                        milkAux = "Con Leche";
-                    }else if(milk == 1){
-                        milkAux ="Sin leche";
-                    }else{
-                       break;
-                    }
-
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    System.out.println(coffeeQuestion);
-                    System.out.println(milk);
-                    System.out.println(sizeAux);
-                    System.out.println(milkAux);
-
-                case "te":
-
-
-                    String teQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de te deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,teOptions,null);
-
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
-
-                    int teMilk = JOptionPane.showConfirmDialog(null,"Quieres Leche?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    if (teMilk == 0){
-                        milkAux = "Con Leche";
-                    }else if(teMilk == 1){
-                        milkAux ="Sin leche";
-                    }else{
-                        continue;
-                    }
-
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    System.out.println(teQuestion);
-                    System.out.println(teMilk);
-                    System.out.println(sizeAux);
-                    System.out.println(milkAux);
-
-                case "frappucino":
-
-                    String frapQuestion = (String)JOptionPane.showInputDialog(null, "Que Clase de te deseas","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2,frapOptions,null);
-
-                    sizeAux = (String) JOptionPane.showInputDialog(null, "Que tamaño de bebida deseas?","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 , sizeOptions,null);
-
-                    int whipped = JOptionPane.showConfirmDialog(null,"Quieres Crema Batida?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    if (whipped == 0){
-                        milkAux = "Con Leche";
-                    }else if(whipped == 1){
-                        milkAux ="Sin leche";
-                    }else{
-                        continue;
-                    }
-
-                    orderFinish = JOptionPane.showConfirmDialog(null,"Deseas algo mas?","fєℓιиє ςαfє",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.YES_NO_OPTION,icon2);
-
-                    System.out.println(frapQuestion);
-                    System.out.println(whipped);
-                    System.out.println(sizeAux);
-                    System.out.println(milkAux);
-
-                 default:
-                     JOptionPane.showMessageDialog(null, "Lo sentimos, no tenemos lo que estas buscando\n","fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2 );
-
-
-            }
-        }*/
-
-
-    }
-
 }

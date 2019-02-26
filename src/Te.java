@@ -4,10 +4,11 @@ public class Te extends Beverage {
 
     private String leafType;
 
-    public Te(String name, boolean milk, List<Sizes> size, String leafType) {
-        super(name, milk, size);
+    public Te(String name, boolean milk, Sizes sizes, double price, String leafType) {
+        super(name, milk, sizes, price);
         this.leafType = leafType;
     }
+
 
     public String getLeafType() {
         return leafType;

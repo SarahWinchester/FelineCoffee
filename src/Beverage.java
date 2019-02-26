@@ -3,17 +3,15 @@ import java.util.List;
 
 public class Beverage {
 
-    private String name;
-    //private double price;
+    public String name;
     private boolean milk;
-    private List<Sizes> size = new ArrayList<Sizes>();
-    //private List<Beverage> beverages= new ArrayList<Beverage>();
+    Sizes sizes ;
+    public double price;
 
-
-    public Beverage(String name, boolean milk, List<Sizes> size) {
-        this.name = name;
+    public Beverage(String name, boolean milk, Sizes sizes, double price) {
         this.milk = milk;
-        this.size = size;
+        this.sizes = sizes;
+        this.price = price;
     }
 
     public String getName() {
@@ -32,11 +30,21 @@ public class Beverage {
         this.milk = milk;
     }
 
-    public List<Sizes> getSize() {
-        return size;
+    public Sizes getSizes() {
+        return sizes;
     }
 
-    public void setSize(List<Sizes> size) {
-        this.size = size;
+    public void setSizes(Sizes sizes) {
+        this.sizes = sizes;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
 }

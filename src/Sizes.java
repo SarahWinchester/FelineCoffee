@@ -1,9 +1,9 @@
 public enum Sizes {
 
 
-    chico(46),
-    mediano(50),
-    grande(55);
+    small(46),
+    medium(50),
+    large(55);
 
 
     private double price;

@@ -3,13 +3,13 @@ import java.util.List;
 public class Frapuccino extends Beverage {
 
     private boolean creamType;
-    private int priceWhippedCream;
+    private int priceWhippedCream = 10;
 
     //Constructor
 
 
-    public Frapuccino(String name, boolean milk, List<Sizes> size, boolean creamType, int priceWhippedCream) {
-        super(name, milk, size);
+    public Frapuccino(String name, boolean milk, Sizes sizes, double price, boolean creamType, int priceWhippedCream) {
+        super(name, milk, sizes, price);
         this.creamType = creamType;
         this.priceWhippedCream = priceWhippedCream;
     }
