@@ -6,7 +6,7 @@ public class Te extends Beverage {
 
     public Te(String name, boolean milk, Sizes sizes, double price, String leafType) {
         super(name, milk, sizes, price);
-        this.leafType = leafType;
+        setLeafType(leafType);
     }
 
 

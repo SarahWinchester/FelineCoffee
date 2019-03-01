@@ -1,20 +1,23 @@
 import javax.swing.*;
-import java.util.List;
-
 public class Waitress {
 
-    public void kindOfBeverage(){
+    public Order kindOfBeverage(){
 
         Icon icon2 = new ImageIcon(Order.class.getResource("img/felineCafe.png"));
 
         Boolean milkAux;
+        Boolean creamType;
         String nameAux;
         Sizes sizeAux;
         int orderFinish = 0;
+
+
         Sizes [] sizeOptions =Sizes.values();
         String [] coffeOptions ={"Veracruz", "Oaxaca" ,"Colombia"};
         String [] teOptions ={"Green Te", "Black Te" ,"Tisane"};
         String [] frapOptions ={"Regular", "Moka" ,"White"};
+
+        Order orderCoffee = new Order();
 
 
 
@@ -25,7 +28,7 @@ public class Waitress {
 
             nameAux = (String) JOptionPane.showInputDialog(null, "What do you want to drink?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, null, null);
 
-            System.out.println(nameAux);
+            //System.out.println(nameAux);
             switch (nameAux.toLowerCase()) {
 
                 case "coffee":
@@ -44,14 +47,15 @@ public class Waitress {
                         break;
                     }
 
-                    System.out.println(coffeeQuestion);
+                   /* System.out.println(coffeeQuestion);
                     System.out.println(sizeAux);
                     System.out.println(milkAux);
-                    System.out.println("********");
+                    System.out.println(sizeAux.getPrice());
+                    System.out.println("********");*/
 
                     Cafe coff = new Cafe("coffee", milkAux,sizeAux, sizeAux.getPrice() ,coffeeQuestion);
-                   // System.out.println(coff.sizes.getPrice());
-                    Order order = new Order();
+                    orderCoffee.coffe.add(coff);
+
 
 
                     orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
@@ -74,45 +78,65 @@ public class Waitress {
                     } else {
                         break;
                     }
-                    System.out.println(teQuestion);
+                    /*System.out.println(teQuestion);
                     System.out.println(sizeAux);
                     System.out.println(milkAux);
-                    System.out.println("******");
+                    System.out.println("******");*/
+
+                    Te teSave = new Te("te", milkAux , sizeAux , sizeAux.getPrice(),teQuestion);
+                    orderCoffee.te.add(teSave);
 
                     orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
 
                     break;
 
-                case "frappucino":
+                case "frappuccino":
 
                     String frapQuestion = (String) JOptionPane.showInputDialog(null, "What kind of Frappuccino do you want?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, frapOptions, null);
 
                     sizeAux = (Sizes) JOptionPane.showInputDialog(null, "What Size?", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2, sizeOptions, null);
 
-                    int whipped = JOptionPane.showConfirmDialog(null, "Do you want Wipped cream?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
+                    int frapMilk = JOptionPane.showConfirmDialog(null, "Do you want extra Milk?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
 
-                    if (whipped == 0) {
+                    if (frapMilk == 0) {
                         milkAux = true;
-                    } else if (whipped == 1) {
+                    } else if (frapMilk == 1) {
                         milkAux = false;
                     } else {
                         break;
                     }
 
-                    System.out.println(frapQuestion);
+                    int whipped = JOptionPane.showConfirmDialog(null, "Do you want Wipped cream?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
+
+                    if (whipped == 0) {
+                        creamType = true;
+                    } else if (whipped == 1) {
+                        creamType = false;
+                    } else {
+                        break;
+                    }
+
+                    /*System.out.println(frapQuestion);
                     System.out.println(sizeAux);
-                    System.out.println(milkAux);
-                    System.out.println("*******");
+                    System.out.println("*******");*/
+
+                    Frapuccino frapOrder = new Frapuccino("Frappuccino", milkAux, sizeAux, sizeAux.getPrice(),creamType, 10);
+                    orderCoffee.frap.add(frapOrder);
 
                     orderFinish = JOptionPane.showConfirmDialog(null, "Do you want something else?", "fєℓιиє ςαfє", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.YES_NO_OPTION, icon2);
                     break;
 
                 default:
-                    JOptionPane.showMessageDialog(null, "We sorry, we don't have what you are looking for, can i offer you something else?\n", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2);
+                    JOptionPane.showMessageDialog(null, "We sorry, we don't have what you are looking for, can i offer you something else?\n We have Coffee, Te and Frappuccinos", "fєℓιиє ςαfє", JOptionPane.PLAIN_MESSAGE, icon2);
             }
             }
             while (orderFinish == 0) ;
 
 
+
+        return orderCoffee;
+
         }
+
+
 }

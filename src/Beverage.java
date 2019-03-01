@@ -1,17 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Beverage {
 
     public String name;
-    private boolean milk;
+    public  boolean milk;
     Sizes sizes ;
     public double price;
 
+    public Beverage() {
+    }
+
     public Beverage(String name, boolean milk, Sizes sizes, double price) {
-        this.milk = milk;
-        this.sizes = sizes;
-        this.price = price;
+        setName(name);
+        setMilk(milk);
+        setSizes(sizes);
+        setPrice(price);
     }
 
     public String getName() {
@@ -22,7 +23,7 @@ public class Beverage {
         this.name = name;
     }
 
-    public boolean isMilk() {
+    public boolean getMilk() {
         return milk;
     }
 

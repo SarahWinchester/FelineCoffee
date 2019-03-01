@@ -1,17 +1,17 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
 
-    private List<Beverage> beverages= new ArrayList<Beverage>();
+    public List<Cafe> coffe = new ArrayList<Cafe>();
+    public List<Te> te = new ArrayList<>();
+    public  List<Frapuccino> frap = new ArrayList<>();
+
+
+
 
 
     public static void main(String[] args) {
-
-
-
-
         System.out.println("\n    _ ,                                                        \n" +
                 "  ,- -       ,,                        ,- _~.         /\\       \n" +
                 " _||_        ||  '                    (' /|     _    ||        \n" +
@@ -37,33 +37,17 @@ public class Order {
                 "        `-.__`.               ,' fєℓιиє ςαfє.\n" +
                 "    ,--------`\"`-------------'--------.\n" +
                 "     `\"--.__                   __.--\"'\n" +
-                "            `\"\"-------------\"\"'");
-
-        System.out.println("   ______________________________\n" +
-                " / \\          fєℓιиє ςαfє        \\.\n" +
-                "|   |                            |.\n" +
-                " \\_ |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |                            |.\n" +
-                "    |   _________________________|___\n" +
-                "    |  /                            /.\n" +
-                "    \\_/fєℓιиє ςαfє_________________/.");
-
-
-
+                "            `\"\"-------------\"\"' \n\n");
 
 
         Waitress waitress = new Waitress();
-        waitress.kindOfBeverage();
+        Order previous = waitress.kindOfBeverage();
+
+        Check check = new Check();
+        check.bringObjects(previous);
+
+
+
     }
 
 }

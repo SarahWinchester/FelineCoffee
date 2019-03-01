@@ -2,23 +2,19 @@ import java.util.List;
 
 public class Cafe extends Beverage {
 
-    private String coffeType;
-    public static final String cof = "Coffee";
+    private String coffeeType;
 
-    public Cafe(String name, boolean milk, Sizes sizes, double price, String coffeType) {
+    public Cafe(String name, boolean milk, Sizes sizes, double price, String coffeeType) {
         super(name, milk, sizes, price);
-        this.coffeType = coffeType;
+        setCoffeeType(coffeeType);
     }
 
-    public String getCoffeType() {
-        return coffeType;
+    public String getCoffeeType() {
+        return coffeeType;
     }
 
-    public void setCoffeType(String coffeType) {
-        this.coffeType = coffeType;
+    public void setCoffeeType(String coffeeType) {
+        this.coffeeType = coffeeType;
     }
 
-    public static String getCof() {
-        return cof;
-    }
 }

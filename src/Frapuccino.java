@@ -3,18 +3,18 @@ import java.util.List;
 public class Frapuccino extends Beverage {
 
     private boolean creamType;
-    private int priceWhippedCream = 10;
+    private double priceWhippedCream = 10;
 
     //Constructor
 
 
-    public Frapuccino(String name, boolean milk, Sizes sizes, double price, boolean creamType, int priceWhippedCream) {
+    public Frapuccino(String name, boolean milk, Sizes sizes, double price, boolean creamType, double priceWhippedCream) {
         super(name, milk, sizes, price);
-        this.creamType = creamType;
-        this.priceWhippedCream = priceWhippedCream;
+        setCreamType(creamType);
+        setPriceWhippedCream(priceWhippedCream);
     }
 
-    public boolean isCreamType() {
+    public boolean getCreamType() {
         return creamType;
     }
 
@@ -22,11 +22,11 @@ public class Frapuccino extends Beverage {
         this.creamType = creamType;
     }
 
-    public int getPriceWhippedCream() {
+    public double getPriceWhippedCream() {
         return priceWhippedCream;
     }
 
-    public void setPriceWhippedCream(int priceWhippedCream) {
+    public void setPriceWhippedCream(double priceWhippedCream) {
         this.priceWhippedCream = priceWhippedCream;
     }
 }
